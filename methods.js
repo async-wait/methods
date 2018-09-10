@@ -1,6 +1,6 @@
 /**
  * 检测数据类型
- * @param {*} data 
+ * @param { * } data 要检测的对象
  */
 function getType(data) {
   let type = Object.prototype.toString.call(data);
@@ -21,9 +21,9 @@ function getType(data) {
 
 /**
  * 数组参数可以使对象
- * @param {* arr id} data 
- * arr 为要去重的对象数组
- * id  如果数组参数为对象，则需要传入对象的唯一标识符
+ * @param { array } arr 要去重的数组 
+ * @param { string|number } id 如果数组参数为对象，则需要传入对象的唯一标示符
+ *
  */
 function distinct(arr, id) {
   let obj = {};
@@ -38,6 +38,8 @@ function distinct(arr, id) {
   }, [])
   return arr;
 }
+
+
 
 /**
  * 
