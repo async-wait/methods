@@ -124,3 +124,23 @@ function throttle(method, delay) {
         }
     }
 }
+/*
+* @desc 数组扁平化
+* @param { array } array扁平化的数组
+*/
+function flatten(array) {
+//   1种
+//   let result = [];
+//   result = array.flat(Infinity); // es6语法
+//   return result;
+  
+//   2
+//   while (array.some(item) => Array.isArray(item)) {
+//     array = [].concat(..array);
+//   }
+//   return array;
+//   3
+  return array.reduce((prev, item) => {
+    return prev.concat(Array.isArray(item) ? flatten(item) : item);
+  }, []);
+} 
