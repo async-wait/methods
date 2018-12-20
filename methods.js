@@ -38,6 +38,24 @@ function distinct(arr, id) {
   }, [])
   return arr;
 }
+function unique(array) {
+  let result = [];
+//   result = array.filter(function (item, index) {
+//      return array.indexOf(item) === index;
+//   });
+  
+//   array.forEach(item => {
+//     if (!array.includes(item)) {
+//       result.push(item);
+//     }
+//   });
+  
+//   result = [...new Set(array)];
+  
+  result = Array.from(new Set(array));
+  return result;
+}
+
 
 
 
@@ -49,6 +67,15 @@ function deepClone(data) {
   let obj = null;
   obj = JSON.parse(JSON.stringify(data));
   return obj;
+}
+
+function deepClone1(obj) {
+  if (typeof obj !== 'object') return;
+  let newObj = obj instanceof Array ? [] : {};
+  for (let key in obj) {
+    newObj[key] = typeof obj[key] === 'object' ? deepClone1(obj[key]) : obj[key];
+  }
+  return newObj;
 }
 
 
