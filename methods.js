@@ -112,16 +112,33 @@ function debounce(method, delay, immediate) {
 /*
 * @desc 函数节流
 */
-function throttle(method, delay) {
-    var timer = null;
-    return function() {
-        var context = this;
-        var args = arguments;
-        if(!timer) {
-            timer = setTimeout(function() {
-                method.apply(context, args);
-            }, delay)
+function throttle(fn, interval) {
+//     var timer = null;
+//     return function() {
+//         var context = this;
+//         var args = arguments;
+//         if(!timer) {
+//             timer = setTimeout(function() {
+//                 fn.apply(context, args);
+//             }, interval)
+//         }
+//     }
+    let timer,
+        firstTimer = true;
+    return function () {
+        let args = arguments,
+            _this = this;
+        if (firstTimer) {
+            fn.apply(_this, args);
         }
+        if (timer) {
+            return;
+        }
+        timer = setTimeout(function () { // 如果是箭头函数，则不用设置this变量
+            clearTimeout(timer);
+            timer = null;
+            fn.apply(_this, args);
+        });
     }
 }
 /*
