@@ -138,7 +138,7 @@ function throttle(fn, interval) {
             clearTimeout(timer);
             timer = null;
             fn.apply(_this, args);
-        });
+        }, interval || 500);
     }
 }
 /*
