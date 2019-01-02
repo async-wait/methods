@@ -1,0 +1,67 @@
+class Promise {
+    constructor(executor) {
+        this.status = 'pending';
+        this.value = undefined;
+        this.reason = undefined;
+
+        this.onResolveCallbacks = [];
+        this.onRejectCallbacks = [];
+
+        let resolve = (value) => {
+            if (this.status === 'pending') {
+                this.status = 'resolved';
+                this.value = value;
+                this.onResolveCallbacks.forEach(cb => cb());
+            }
+        }
+        let reject = (reason) => {
+            if (this.status === 'pending') {
+                this.status = 'rejected';
+                this.reason = reason;
+                this.onRejectCallbacks.forEach(cb => cb());
+            }
+        }
+        try {
+            executor(resolve, reject);
+        } catch(err) {
+            reject(err);
+        }
+    }
+    then(onFulfilled, onRejected) {
+        let newPromise = new Promise((resolve, reject) => {
+            if (this.status === 'resolved') {
+                try {
+                    onFulfilled(this.value);
+                } catch(err) {
+                    reject(err);
+                }
+            }
+            if (this.status === 'rejected') {
+                try {
+                    onRejected(this.reason);
+                } catch(err) {
+                    reject(err);
+                }
+            }
+            if (this.status === 'pending') {
+                this.onResolveCallbacks.push(() => {
+                    try {
+                        onFulfilled(this.value);
+                    } catch(err) {
+                        reject(err);
+                    }
+                });
+                this.onRejectCallbacks.push(() => {
+                    try {
+                        onRejected(this.reason);
+                    } catch(err) {
+                        reject(err);
+                    }
+                });
+            }
+        });
+        return newPromise;
+    }
+}
+
+module.exports = Promise;
