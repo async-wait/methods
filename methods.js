@@ -3,20 +3,20 @@
  * @param { * } data 要检测的对象
  */
 function getType(data) {
-  let type = Object.prototype.toString.call(data);
-  let map = {
-    '[object Array]': 'array',
-    '[object Object]': 'object',
-    '[object Number]': 'number',
-    '[object String]': 'string',
-    '[object Boolean]': 'boolean',
-    '[object RegExp]': 'regexp',
-    '[object Null]': 'null',
-    '[object Error]': 'error',
-    '[object Function]': 'function',
-    '[object Undefined]': 'undefined'
-  }
-  return map[type];
+    let type = Object.prototype.toString.call(data);
+    let map = {
+        '[object Array]': 'array',
+        '[object Object]': 'object',
+        '[object Number]': 'number',
+        '[object String]': 'string',
+        '[object Boolean]': 'boolean',
+        '[object RegExp]': 'regexp',
+        '[object Null]': 'null',
+        '[object Error]': 'error',
+        '[object Function]': 'function',
+        '[object Undefined]': 'undefined'
+    }
+    return map[type];
 }
 
 /**
@@ -26,17 +26,17 @@ function getType(data) {
  *
  */
 function distinct(arr, id) {
-  let obj = {};
-  arr = arr.reduce((item, next) => {
-    if(id) {
-      obj[next[id]] ? '' : obj[next[id]] = true && item.push(next);
-    }
-    else {
-      obj[next] ? '' : obj[next] = true && item.push(next);      
-    }
-    return item;
-  }, [])
-  return arr;
+    let obj = {};
+    arr = arr.reduce((item, next) => {
+        if(id) {
+            obj[next[id]] ? '' : obj[next[id]] = true && item.push(next);
+        }
+        else {
+            obj[next] ? '' : obj[next] = true && item.push(next);      
+        }
+        return item;
+    }, [])
+    return arr;
 }
 function unique(array) {
   let result = [];
@@ -63,11 +63,12 @@ function unique(array) {
  * 
  * 深拷贝
  */
-function deepClone(data) {
-  let obj = null;
-  obj = JSON.parse(JSON.stringify(data));
-  return obj;
-}
+// 此方法比较消耗性能，不如递归
+// function deepClone(data) {
+//     let obj = null;
+//     obj = JSON.parse(JSON.stringify(data));
+//     return obj;
+// }
 
 function deepClone1(obj) {
   if (typeof obj !== 'object') return;
@@ -146,11 +147,6 @@ function throttle(fn, interval) {
 * @param { array } array扁平化的数组
 */
 function flatten(array) {
-//   1种
-//   let result = [];
-//   result = array.flat(Infinity); // es6语法
-//   return result;
-  
 //   2
 //   while (array.some(item) => Array.isArray(item)) {
 //     array = [].concat(..array);

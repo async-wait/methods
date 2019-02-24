@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+    <script src="./element.js"></script>
+    <script src="./diff.js"></script>
+    <script>
+        let virtualDom = createElement('ul', {class: 'list'}, [
+            createElement('li', {class: 'item', style: 'color: red; font-size: 18px;'}, ['a']),
+            createElement('li', {class: 'item'}, ['b']),
+            createElement('li', {class: 'item'}, [
+                createElement('input', {class: 'children', value: '1'}, []),
+                createElement('button', {class: 'btn', type: 'button'}, ['立即购买']),
+            ])
+        ]);
+        let virtualDom2 = createElement('ul', {class: 'list-group'}, [
+            createElement('li', {class: 'item'}, ['a']),
+            createElement('li', {class: 'item'}, ['b']),
+            createElement('li', {class: 'item'}, [
+                createElement('input', {class: 'children', value: '1'}, []),
+                createElement('button', {class: 'btn', type: 'button'}, ['立即购买']),
+            ])
+        ]);
+
+        let el = render(virtualDom);
+        // console.log(virtualDom);
+        let patches = diff(virtualDom, virtualDom2);
+
+
+
+
+
+
+
+
+        // 页面渲染
+        function renderDom(id,el) {
+            let root = document.querySelector(id);
+            root.appendChild(el);
+        }
+        renderDom('#app', el);
+    </script>
+</body>
+</html>
