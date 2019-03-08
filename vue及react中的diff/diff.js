@@ -1,3 +1,4 @@
+const ATTRS = 'ATTRS';  // dom有变化
 
 function diff(oldTree, newTree) {
     let patches = {};
@@ -24,7 +25,14 @@ function diffAttr(oldAttrs, newAttrs) {
 
 function walk(oldTree, newTree, index, patches) {
     let currentPatch = [];
+    // 比较属性时候有更新
     if (oldTree.type === newTree.type) {
         let attrs = diffAttr(oldTree.props, newTree.props);
+        if (Object.keys(attrs).length > 0) {
+            currentPatch.push({type: ATTRS, attrs});
+        }
+    }
+    if (currentPatch.length > 0) { // 当前元素确实有补丁
+        patches[index] = currentPatch;
     }
 };

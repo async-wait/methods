@@ -1,0 +1,37 @@
+* {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#swiper-wp {
+    width: 640px;
+    height: 480px;
+    margin: 50px auto;
+    overflow: hidden;
+    position: relative;
+}
+#swiper-wp ul {
+    width: 1000%;
+    overflow: hidden;
+}
+#swiper-wp ul li {
+    float: left;
+}
+#swiper-wp span {
+    width: 20px;
+    height: 35px;
+    position: absolute;
+    left: 0px;
+    top: 50%;
+    transform: translate3d(20px, -50%, 0);
+    background: url('./img/prev.png');
+    background-size: cover;
+    cursor: pointer;
+}
+#swiper-wp span.next {
+    left: auto;
+    right: 0px;
+    background: url('./img/next.png');
+    background-size: cover;
+    transform: translate3d(-20px, -50%, 0);
+}
