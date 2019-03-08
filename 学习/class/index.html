@@ -16,12 +16,54 @@
             <li><img src="./img/04.jpg" alt=""></li>
             <li><img src="./img/05.jpg" alt=""></li>
         </ul>
+        <ol class="dots">
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ol>
         <span class="prev"></span>
         <span class="next"></span>
     </div>
     <script src="./index.js"></script>
     <script>
-        
+        window.onload = function () {
+            let index = 0;
+            let range = 640;
+            let next = document.querySelector('.next');
+            let prev = document.querySelector('.prev');
+            let container = document.querySelector('.container');
+            let dots = document.querySelectorAll('.dots li');
+            next.onclick = function () {
+                if (index >= 4) {
+                    index = 0
+                } else {
+                    index++;
+                }
+                removeClass(index);
+            }
+            prev.onclick = function () {
+                if (index <= 0) {
+                    index = 4
+                } else {
+                    index--;
+                }
+                removeClass(index);
+            }
+            for (let i = 0, len = dots.length; i < len; i++) {
+                dots[i].onclick = function () {
+                    removeClass(i);
+                }
+            }
+            function removeClass(index) {
+                for (let i = 0, len = dots.length; i < len; i++) {
+                    dots[i].className = '';
+                }
+                dots[index].className = 'active';
+                container.style.transform = `translate3d(-${index * range}px, 0, 0)`;
+            }
+        }
     </script>
 </body>
 </html>
