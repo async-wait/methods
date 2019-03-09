@@ -21,17 +21,17 @@
             ])
         ]);
         let virtualDom2 = createElement('ul', {class: 'list-group'}, [
-            createElement('li', {class: 'item'}, ['1']),
+            createElement('li', {class: 'item', style: 'color: blue;'}, ['1']),
             createElement('li', {class: 'item'}, ['b']),
             createElement('div', {class: 'item', style: 'color: red;'}, [
                 createElement('input', {class: 'children', value: '1'}, []),
-                createElement('input', {class: 'btn', type: 'button'}, ['立即购买']),
+                createElement('button', {class: 'btn', type: 'button'}, ['立即购买']),
             ])
         ]);
 
         let el = render(virtualDom);
         let patches = diff(virtualDom, virtualDom2);
-        console.log(patches);
+        // console.log(patches);
         patch(el, patches);
 
         // 页面渲染
