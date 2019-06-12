@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./select.css">
+    <script src="http://libs.baidu.com/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="title">这是一个下拉复选框</div>
+    <div id="container">
+        <!-- <input type="text" placeholder="请选择" class="input-inner" readonly="readonly">
+        <span class="tag"></span>
+        <ul class="list">
+            <li>黄金糕</li>
+            <li>双皮奶</li>
+            <li>河仔煎</li>
+            <li>龙须面</li>
+            <li>北京烤鸭</li>
+        </ul> -->
+    </div>
+    <script src="./select.js"></script>
+    <script>
+        $('#container').select({
+            container: $('#container'),
+            disabled: false,
+            list: ['黄金糕', '双皮奶', '河仔煎', '龙须面', '北京烤鸭']
+        });
+    </script>
+</body>
+</html>

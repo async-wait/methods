@@ -1,0 +1,122 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body {
+  background-color: #eee;
+}
+
+.title {
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+#container {
+  position: relative;
+  font-size: 14px;
+  width: 240px;
+  margin-left: 20px;
+}
+
+#container.focus .input-inner {
+  border-color: #409eff;
+}
+
+#container .input-inner.disabled {
+  background-color: #f5f7fa;
+  border-color: #e4e7ed;
+  color: #c0c4cc;
+}
+
+#container .input-inner {
+  -webkit-appearance: none;
+  background-color: #fff;
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #dcdfe6;
+  box-sizing: border-box;
+  color: #606266;
+  display: inline-block;
+  font-size: inherit;
+  height: 40px;
+  line-height: 40px;
+  outline: none;
+  padding: 0 15px;
+  transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+  width: 100%;
+  cursor: pointer;
+}
+
+#container .tag {
+  border-width: 6px;
+  border-style: solid;
+  border-color: #dcdfe6 transparent transparent transparent;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translate3d(0, -20%, 0);
+}
+
+#container .tag.is-reverse {
+  transform: rotate(180deg);
+  top: 25%;
+}
+
+#container .list {
+  width: 100%;
+  position: absolute;
+  top: 46px;
+  background: #fff;
+  padding: 6px 0;
+  border: 1px solid #dcdfe6;
+  border-radius: 3px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+  display: none;
+}
+
+#container .list:before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 30px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #fff transparent;
+}
+
+#container .list li {
+  font-size: 14px;
+  padding: 0 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #606266;
+  height: 34px;
+  line-height: 34px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+#container .list li.hover {
+  background-color: #f5f7fa
+}
+
+#container .list li.active {
+  font-weight: 700;
+  color: #409eff;
+}
+
+input::-webkit-input-placeholder{
+  color: #dcdfe6;
+  font-size: 14px;
+}
+input::-moz-placeholder{  
+  color: #dcdfe6;
+  font-size: 14px;        
+}
+input:-ms-input-placeholder{  
+  color: #dcdfe6;
+  font-size: 14px;        
+}
