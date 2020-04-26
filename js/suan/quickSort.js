@@ -11,11 +11,11 @@
 // }
 
 // function partition(arr, left, right) {
-//   const mid = Math.floor((right + left) / 2);
-//   const pivot = arr[mid];
+//   const pivot = arr[right];
 //   let partitionIndex = left;
+//   debugger
 //   for (let i = left; i < right; i++) {
-//     if (arr[i] > pivot) {
+//     if (arr[i] < pivot) {
 //       swap(arr, partitionIndex, i);
 //       partitionIndex++;
 //     }
@@ -30,32 +30,26 @@
 //   arr[r] = temp;
 // }
 
-function quickSort(arr, i, j) {
+function quickSort(nums, i, j) {
   let left = i;
   let right = j;
-  const mid = Math.floor((left + right) / 2);
-  let pivot = arr[mid];
-  if (i < j) {
-    while (i < j) {
-      while (arr[j] >= pivot && j > mid) {
-        j--;
-      }
-      if (i < j) {
-        arr[mid] = arr[j];
-        arr[j] = pivot;
-        pivot = arr[mid];
-      }
-      while (arr[i] <= pivot && i < mid) {
-        i++;
-      }
-      if (i < j) {
-        arr[mid] = arr[i];
-        arr[i] = pivot;
-        pivot = arr[mid];
-      }
-    }
-    quickSort(arr, left, mid - 1);
-    quickSort(arr, mid + 1, right);
-    return arr;
+  let pivot = nums[i];
+  if (i > j) {
+    return;
   }
+  while (i != j) {
+    while (nums[j] >= pivot && i < j) {
+      j--;
+    }
+    while (nums[i] <= pivot && i < j) {
+      i++
+    }
+    if (i < j) {
+      [nums[i], nums[j]] = [nums[j], nums[i]];
+    }
+  }
+  [nums[left], nums[i]] = [nums[i], pivot]
+  quickSort(nums, left, j - 1);
+  quickSort(nums, i + 1, right);
+  return nums;
 }
