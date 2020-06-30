@@ -37,7 +37,7 @@ function quickSort(nums, i, j) {
   if (i > j) {
     return;
   }
-  while (i != j) {
+  while (i < j) {
     while (nums[j] >= pivot && i < j) {
       j--;
     }
@@ -49,7 +49,7 @@ function quickSort(nums, i, j) {
     }
   }
   [nums[left], nums[i]] = [nums[i], pivot]
-  quickSort(nums, left, j - 1);
+  quickSort(nums, left, i - 1);
   quickSort(nums, i + 1, right);
   return nums;
 }
