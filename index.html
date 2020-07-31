@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    var lengthOfLongestSubstring = function (s) {
+      let len = s.length;
+      if (len <= 1) {
+        return len;
+      }
+      let max = 1;
+      let head = 0;
+      let tail = 1;
+      let index = -1;
+      while (tail < len) {
+        index = s.substring(head, tail).indexOf(s[tail]);
+        if (index != -1 && tail > head) {
+          head += index+1;
+          tail++;
+        } else {
+          tail++;
+          if (tail - head > max) {
+            max = tail - head;
+          }
+        }
+      }
+      return max;
+    };
+    console.log(lengthOfLongestSubstring("abcabcbb"));
+  </script>
+</body>
+
+</html>
