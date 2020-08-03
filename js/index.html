@@ -1,28 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-  <script src="./api/promise/index.js"></script>
+  <script src="./api/promise/promise.js"></script>
   <script>
-    const p1 = new MyPromise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(1)
-      }, 1000);
-    })
-    p1.then(res => {
-      console.log(res);
-      return 2;
-    })
-    .then(res => {
-      console.log(res)
-      return 3;
-    }).then(res => {
-      console.log(res);
-    });
+    new MyPromise(resolve => resolve(8))
+      .then(function (value) {
+        return value
+      })
+      .catch(function (reason) {
+        console.log('reason', reason);
+        throw reason
+      })
+      .then(function (value) {
+        console.log(value)
+      })
   </script>
 </body>
+
 </html>
