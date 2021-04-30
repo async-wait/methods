@@ -3,8 +3,8 @@
  * @param { * } data 要检测的对象
  */
 function getType(data) {
-    let type = Object.prototype.toString.call(data);
-    let map = {
+    const type = Object.prototype.toString.call(data);
+    const map = {
         '[object Array]': 'array',
         '[object Object]': 'object',
         '[object Number]': 'number',
@@ -63,13 +63,6 @@ function unique(array) {
  * 
  * 深拷贝
  */
-// 此方法比较消耗性能，不如递归
-// function deepClone(data) {
-//     let obj = null;
-//     obj = JSON.parse(JSON.stringify(data));
-//     return obj;
-// }
-
 function deepClone1(obj) {
   if (typeof obj !== 'object') return;
   let newObj = obj instanceof Array ? [] : {};
@@ -114,16 +107,6 @@ function debounce(method, delay, immediate) {
 * @desc 函数节流
 */
 function throttle(fn, interval) {
-//     var timer = null;
-//     return function() {
-//         var context = this;
-//         var args = arguments;
-//         if(!timer) {
-//             timer = setTimeout(function() {
-//                 fn.apply(context, args);
-//             }, interval)
-//         }
-//     }
     let timer,
         firstTimer = true;
     return function () {

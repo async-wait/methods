@@ -9,30 +9,22 @@
 
 <body>
   <script>
-    var lengthOfLongestSubstring = function (s) {
-      let len = s.length;
-      if (len <= 1) {
-        return len;
+    function a () {
+      return new Promise(reject  => {
+        reject(true)
+      });
+    }
+    async function b () {
+    return await a();
+      console.log('bbbbb', res);
+      if (res) {
+        return false;
       }
-      let max = 1;
-      let head = 0;
-      let tail = 1;
-      let index = -1;
-      while (tail < len) {
-        index = s.substring(head, tail).indexOf(s[tail]);
-        if (index != -1 && tail > head) {
-          head += index+1;
-          tail++;
-        } else {
-          tail++;
-          if (tail - head > max) {
-            max = tail - head;
-          }
-        }
-      }
-      return max;
-    };
-    console.log(lengthOfLongestSubstring("abcabcbb"));
+      console.log('2222');
+      return true;
+    }
+    const c = b();
+    console.log(c, 'c');
   </script>
 </body>
 
