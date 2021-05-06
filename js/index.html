@@ -8,19 +8,11 @@
 </head>
 
 <body>
-  <script src="./api/promise/promise.js"></script>
+  <script src="./algorithm/twoSums.js"></script>
   <script>
-    new MyPromise(resolve => resolve(8))
-      .then(function (value) {
-        return value
-      })
-      .catch(function (reason) {
-        console.log('reason', reason);
-        throw reason
-      })
-      .then(function (value) {
-        console.log(value)
-      })
+    const list = [2, 7, 11, 15];
+    console.log(toSums(list, 9));
+    
   </script>
 </body>
 
