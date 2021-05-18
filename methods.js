@@ -72,57 +72,68 @@ function deepClone1(obj) {
   return newObj;
 }
 
-
-/*
-* @desc 函数防抖
-* @param { function } method 函数
+/**
+ * @desc 防抖函数
+* @param { function } cb 函数
 * @param { number } delay 延迟执行毫秒数
 * @param { boolean } immediate 函数防抖是否立即执行
-*/
-function debounce(method, delay, immediate) {
-    var timer = null;
-    return function() {
-        var context = this;
-        var args = arguments;
-        if(timer) {
+ */
+function debounce(cb, delay, immediate) {
+    // var timer = null;
+    // return function() {
+    //     var context = this;
+    //     var args = arguments;
+    //     if(timer) {
+    //         clearTimeout(timer);
+    //     }
+    //     if(immediate) {
+    //         var callNow = !timer;
+    //         timer = setTimeout(function() {
+    //             timer = null;
+    //         }, delay);
+    //         if(callNow) {
+    //             method.apply(context, args);
+    //         }
+    //     }
+    //     else {
+    //         timer = setTimeout(function() {
+    //             method.apply(context, args);
+    //         }, delay);
+    //     }
+    // }
+    let timer = null;
+    return function () {
+        const ctx = this;
+        if (timer) {
             clearTimeout(timer);
         }
-        if(immediate) {
-            var callNow = !timer;
-            timer = setTimeout(function() {
-                timer = null;
-            }, delay);
-            if(callNow) {
-                method.apply(context, args);
-            }
-        }
-        else {
-            timer = setTimeout(function() {
-                method.apply(context, args);
-            }, delay);
-        }
+        timer = setTimeout(() => {
+            cb.apply(ctx, arguments);
+            timer = null;
+        }, delay);
     }
 }
-/*
-* @desc 函数节流
-*/
-function throttle(fn, interval) {
-    let timer,
-        firstTimer = true;
+/**
+ * @description 节流函数
+ * @param { function } cb 目标函数
+ * @param { number } delay 间隔多少秒触发一次 
+ * @param { boolean } immediate 是否立即执行
+ */
+function throttle(cb, delay, immediate) {
+    let timer = null;
     return function () {
-        let args = arguments,
-            _this = this;
-        if (firstTimer) {
-            fn.apply(_this, args);
-        }
-        if (timer) {
+        const ctx = this;
+        if (immediate) {
+            cb.apply(ctx, arguments);
+            immediate = null;
             return;
         }
-        timer = setTimeout(function () { // 如果是箭头函数，则不用设置this变量
-            clearTimeout(timer);
-            timer = null;
-            fn.apply(_this, args);
-        }, interval || 500);
+        if (!timer) {
+            timer = setTimeout(() => {
+                cb.apply(ctx, arguments);
+                timer = null;
+            }, delay);
+        }
     }
 }
 /*
