@@ -74,9 +74,9 @@ function deepClone1(obj) {
 
 /**
  * @desc 防抖函数
-* @param { function } cb 函数
-* @param { number } delay 延迟执行毫秒数
-* @param { boolean } immediate 函数防抖是否立即执行
+ * @param { function } cb 函数
+ * @param { number } delay 延迟执行毫秒数
+ * @param { boolean } immediate 函数防抖是否立即执行
  */
 function debounce(cb, delay, immediate) {
     // var timer = null;
