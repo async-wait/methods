@@ -8,29 +8,29 @@
 </head>
 
 <body>
-  <script src="./algorithm/twoSums.js"></script>
+  <!-- <script src="./algorithm/twoSums.js"></script> -->
   <script>
-    Function.prototype.myBind = function (context) {
-      if (typeof this !== 'function') {
-        return TypeError('error');
+    function myNew (Fn) {
+      const newObj = Object.create(Fn.prototype);
+      const params = [...arguments].slice(1);
+      const result = Fn.apply(newObj, params);
+      if (result && typeof result === 'object' || typeof result === 'function') {
+        return result;
       }
-      const _this = this;
-      const args = [...arguments].slice(1);
-      return function Fn () {
-        if (this instanceof Fn) {
-          return new _this(...args, ...arguments);
-        }
-        return _this.apply(context, args.concat(...arguments));
-      }
+      return newObj;
     }
-    function Person(name, age) {
+
+    function Person (name, age) {
       this.name = name;
       this.age = age;
     }
+    Person.prototype.sayname = function () {
+      console.log(this.name)
+    }
 
-    var _Person = Person.myBind(null, 'hanzichi');
-    var p = new _Person(30); // Person {name: "hanzichi", age: 30}
+    const p = myNew(Person, 'f', 29);
     console.log(p);
+    p.sayname();
   </script>
 </body>
 
