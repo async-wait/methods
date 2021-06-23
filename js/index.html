@@ -10,7 +10,27 @@
 <body>
   <script src="./api/promise/promise.js"></script>
   <script>
-    
+    Function.prototype.myBind = function (context) {
+      if (typeof this !== 'function') {
+        return TypeError('error');
+      }
+      const _this = this;
+      const args = [...arguments].slice(1);
+      return function Fn () {
+        if (this instanceof Fn) {
+          return new _this(...args, ...arguments);
+        }
+        return _this.apply(context, args.concat(...arguments));
+      }
+    }
+    function Person(name, age) {
+      this.name = name;
+      this.age = age;
+    }
+
+    var _Person = Person.myBind(null, 'hanzichi');
+    var p = new _Person(30); // Person {name: "hanzichi", age: 30}
+    console.log(p);
   </script>
 </body>
 
