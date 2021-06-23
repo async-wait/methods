@@ -9,22 +9,8 @@
 
 <body>
   <script>
-    function a () {
-      return new Promise(reject  => {
-        reject(true)
-      });
-    }
-    async function b () {
-    return await a();
-      console.log('bbbbb', res);
-      if (res) {
-        return false;
-      }
-      console.log('2222');
-      return true;
-    }
-    const c = b();
-    console.log(c, 'c');
+    const list = new Int16Array([1, 2, 3, 4, 5, 6]);
+    console.log(Array.from(list));
   </script>
 </body>
 
