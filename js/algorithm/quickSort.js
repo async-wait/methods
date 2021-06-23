@@ -1,55 +1,29 @@
-// function quickSort(arr, left, right) {
-//   left = typeof left !== 'number' ? 0 : left;
-//   right = typeof right !== 'number' ? arr.length - 1 : right;
-//   if (left > right) {
-//     return;
-//   }
-//   const partitionIndex = partition(arr, left, right);
-//   quickSort(arr, left, partitionIndex - 1);
-//   quickSort(arr, partitionIndex + 1, right);
-//   return arr;
-// }
-
-// function partition(arr, left, right) {
-//   const pivot = arr[right];
-//   let partitionIndex = left;
-//   debugger
-//   for (let i = left; i < right; i++) {
-//     if (arr[i] < pivot) {
-//       swap(arr, partitionIndex, i);
-//       partitionIndex++;
-//     }
-//   }
-//   swap(arr, partitionIndex, right);
-//   return partitionIndex;
-// }
-
-// function swap(arr, l, r) {
-//   const temp = arr[l];
-//   arr[l] = arr[r];
-//   arr[r] = temp;
-// }
-
-function quickSort(nums, i, j) {
-  let left = i;
-  let right = j;
-  let pivot = nums[i];
-  if (i > j) {
-    return;
-  }
-  while (i < j) {
-    while (nums[j] >= pivot && i < j) {
+/**
+ * 快速排序算法
+ * 快排采用分治的策略
+ * 选取一个基准点pivot，定义两个指针
+ * 比pivot大的放在右边，比pivot小的放在左边
+ */
+function quickSort (nums, l, r) {
+  if (l > r) return;
+  // 定义双指针
+  let i = l;
+  let j = r;
+  let pivot = nums[l];
+  while (i != j) {
+    while (i < j && nums[j] >= pivot) {
       j--;
     }
-    while (nums[i] <= pivot && i < j) {
-      i++
+    while (i < j && nums[i] <= pivot) {
+      i++;
     }
-    if (i < j) {
+    if (i < j) { // 交换
       [nums[i], nums[j]] = [nums[j], nums[i]];
     }
   }
-  [nums[left], nums[i]] = [nums[i], pivot]
-  quickSort(nums, left, i - 1);
-  quickSort(nums, i + 1, right);
+  debugger
+  [nums[l], nums[i]] = [nums[i], pivot];
+  quickSort(nums, l, i - 1);
+  quickSort(nums, i + 1, r);
   return nums;
 }
